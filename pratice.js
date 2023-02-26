@@ -14,13 +14,11 @@
 // getComputerChoice() 👉 'Rock'
 // getComputerChoice() 👉 'Scissors'
 function getComputerChoice() {
-    let choice = ["rock ", 'papper', 'scissors']
-    const computerChoice = Math.floor(Math.random() * choice.length)
+    let choice = ["rock ", 'paper', 'scissors']
+    const computerdeck = Math.floor(Math.random() * choice.length)
 
-   return choice[computerChoice]
+   return choice[computerdeck]
 }
-
-console.log(getComputerChoice())
 
 // ** getResult compares playerChoice & computerChoice and returns the score accordingly **
 // human wins - getResult('Rock', 'Scissors') 👉 1
@@ -28,7 +26,7 @@ console.log(getComputerChoice())
 // human draws - getResult('Rock', 'Rock') 👉 0
 function getResult(playerChoice, computerChoice) {
   // return the result of score based on if you won, drew, or lost
-  let score = 0
+  let score
   
 
   // All situations where human draws, set `score` to 0
@@ -49,7 +47,7 @@ function getResult(playerChoice, computerChoice) {
   }
  
 
-  // Otherwise human loses (aka set score to -1)
+  // Otherwise human loses (aka set score to -1) 
   else {
     score = -1
   }
@@ -64,7 +62,7 @@ function showResult(score, playerChoice, computerChoice) {
   // Hint: on a score of -1
   // You should do result.innerText = 'You Lose!'
   // Don't forget to grab the div with the 'result' id!
-/*   let result = document.getElementById('result')
+  let result = document.getElementById('result')
   switch (score) {
     case -1:
         result.innerText = "YOU LOSE"
@@ -74,22 +72,24 @@ function showResult(score, playerChoice, computerChoice) {
         result.innerText = 'YOU wIN'
         break;
   
-  } */
+  }
 }
 
 // ** Calculate who won and show it on the screen **
-function onClickRPS({playerChoice}) {
-  console.log(playerChoice)
+function onClickRPS(playerChoice) {
+  console.log({playerChoice})
   const computerChoice = getComputerChoice()
   console.log({computerChoice})
+  const score = showResult()
+  console.log(score)
 }
-console.log(onClickRPS())
+
 
 // ** Make the RPS buttons actively listen for a click and do something once a click is detected **
 function playGame() {
   // use querySelector to select all RPS Buttons
-    const rpsButton = document.querySelectorAll(".rpsbutton")
-    rpsButton[0].onclick = () => console.log(rpsButton[0].value)
+  const rpsButtons = document.querySelectorAll(".rpsButton")
+  rpsButtons[0].onclick = () => console.log(rpsButtons[0].value )   
 
   // * Adds an on click event listener to each RPS button and every time you click it, it calls the onClickRPS function with the RPS button that was last clicked *
   
@@ -97,10 +97,9 @@ function playGame() {
   // 2. Add a 'click' event listener to each button
   // 3. Call the onClickRPS function every time someone clicks
   // 4. Make sure to pass the currently selected rps button as an argument
-    rpsButton.forEach(rpsButton => {
-        rpsButton.onclick = () => onClickRPS(rpsButton.value)
-        
-    })
+ rpsButtons.forEach(rpsButton => {
+  rpsButton.onclick = () => onClickRPS(rpsButton.value)
+ })
  
 
   // Add a click listener to the end game button that runs the endGame() function on click
@@ -112,4 +111,4 @@ function endGame() {
   
 }
 
-//playGame()
+playGame()
